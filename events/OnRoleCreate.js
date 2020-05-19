@@ -15,13 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnRoleCreate {
+const OnEvent = require("../OnEvent.js");
+class OnRoleCreate  extends OnEvent{
   constructor() {
-    this.aEventName = "roleCreate";
-  }
-
-  mEventName() {
-    return this.aEventName;
+    super("roleCreate");
   }
 
   async mExecute(pDiscordBot, ...args) {

@@ -15,13 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnMessageUpdate {
+const OnEvent = require("../OnEvent.js");
+class OnMessageUpdate extends OnEvent {
   constructor() {
-    this.aEventName = "messageUpdate";
-  }
-
-  mEventName() {
-    return this.aEventName;
+    super("messageUpdate");
   }
 
   async mExecute(pDiscordBot, ...args) {

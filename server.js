@@ -34,14 +34,14 @@ function mHTMLHeader()
     "<head>" +
     "<meta charset='utf-8'>" +
     "<title>";
-  vHTML += DiscordBot.mClient().user.username;  
+  vHTML += DiscordBot.Client.user.username;  
   vHTML +=
     "</title>" +
     "<meta http-equiv='X-UA-Compatible' content='IE=edge'>" +
     "<meta name='viewport' content='width=device-width, initial-scale=1'>" +
     "<meta name='description' content='A cool thing made with Glitch'>" +
     "<link id='favicon' rel='icon' href='";
-  vHTML += DiscordBot.mClient().user.displayAvatarURL();
+  vHTML += DiscordBot.Client.user.displayAvatarURL();
   vHTML +=
     "' type='image/x-icon'>" +
     "<!-- import the webpage's stylesheet -->" +
@@ -57,10 +57,11 @@ function mHTMLFooter()
   return vHTML;
 }
 
+// Page designed to be used with uptimerobot.com to check if the bot is available or not ...
 app.get("/", (request, response) => 
 {
   var vHTML = mHTMLHeader();
-  vHTML += `</H1><img src='${DiscordBot.mClient().user.displayAvatarURL()}' width='50'>${DiscordBot.mClient().user.username} on line ...</H1>`;   
+  vHTML += `</H1><img src='${DiscordBot.Client.user.displayAvatarURL()}' width='50'>${DiscordBot.Client.user.username} on line ...</H1>`;   
   vHTML += mHTMLFooter();
   response.send(vHTML);
 });

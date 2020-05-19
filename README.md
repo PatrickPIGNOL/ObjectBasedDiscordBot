@@ -18,9 +18,15 @@ along with this program.  If not, see **<https://www.gnu.org/licenses/>**.
 
 An Object Based Discord Bot
 
-You have to provide a valid token in .env file before it can work properly
+This bot is desinged to be used as a discord bot code and must be tested in a discord server. You have to invite your bot in your discord server in order the bot can answer.
+
+You have to provide a valid token in .env file before it can work properly.
 
 Do not edit discordbot.sqlite file manualy.
+
+Use help command to get the list of the bot commands.
+
+Use ping command to test the bot activity on your discord server.
 
 Put commands in ./commands/ dirrectory, you can clone ./commands/Ping.js command to start edit yours.
 
@@ -28,7 +34,7 @@ Discord Events are in ./event dirrectory. you can edit them as your need ... nor
 
 ## An Object Based General purpose Discord Bot 
 
-[/](https://malleable-traveling-moonstone.glitch.me/) An activity page to know if the bot is available.
+[/](https://malleable-traveling-moonstone.glitch.me/) An activity page to know if the bot is available. This page is designed to be ping by [uptimerobot.com](http://uptimerobot.com).
 
 ## Made by [Glitch](https://glitch.com/)
 

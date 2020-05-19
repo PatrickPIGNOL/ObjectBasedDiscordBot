@@ -15,13 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnReconnecting {
+const OnEvent = require("../OnEvent.js");
+class OnReconnecting extends OnEvent {
   constructor() {
-    this.aEventName = "reconnecting";
-  }
-  
-  mEventName() {
-    return this.aEventName;
+    super("reconnecting");
   }
   
   async mExecute(pDiscordBot, ...args) {

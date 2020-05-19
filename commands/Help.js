@@ -46,8 +46,8 @@ class Help extends Command {
     {
       if(vCommand.mHavePermission(pDiscordBot, message))
       {
-        let vName = `**${vCommand.mName()}**`
-        if(vCommand.mAliases().length)
+        let vName = `**${vCommand.Name}**`
+        if(vCommand.Aliases.length)
         {
           vName += ` Aliases : `;
           const vAliases = vCommand.mAliases();
@@ -56,7 +56,7 @@ class Help extends Command {
               vName += `${vAlias} `;
           }
         }
-        vEmbed.addField(`${vName}`, `Usage : ${vCommand.mUsage()}\n${vCommand.mDescription()}`, false);
+        vEmbed.addField(`${vName}`, `Usage : ${vCommand.Usage}\n${vCommand.Description}`, false);
       }
     }
     message.author.send(vEmbed);

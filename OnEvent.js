@@ -20,7 +20,7 @@ class OnEvent {
     this.aEventName = pEventName;
   }
 
-  mEventName() {
+  get EventName() {
     return this.aEventName;
   }
 }
