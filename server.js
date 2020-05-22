@@ -28,7 +28,7 @@ const listener = app.listen(process.env.PORT, () => {
 
 function mHTMLHeader() 
 {
-  var vHTML =
+  let vHTML =
     "<!DOCTYPE html>" +
     "<html lang='fr'>" +
     "<head>" +
@@ -53,14 +53,14 @@ function mHTMLHeader()
 
 function mHTMLFooter() 
 {
-  var vHTML = "</table></body></html>";
+  let vHTML = "</table></body></html>";
   return vHTML;
 }
 
 // Page designed to be used with uptimerobot.com to check if the bot is available or not ...
 app.get("/", (request, response) => 
 {
-  var vHTML = mHTMLHeader();
+  let vHTML = mHTMLHeader();
   vHTML += `</H1><img src='${DiscordBot.Client.user.displayAvatarURL()}' width='50'>${DiscordBot.Client.user.username} on line ...</H1>`;   
   vHTML += mHTMLFooter();
   response.send(vHTML);
