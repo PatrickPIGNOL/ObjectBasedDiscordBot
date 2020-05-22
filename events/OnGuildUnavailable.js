@@ -15,13 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnGuildUnavailable {
+const OnEvent = require("../OnEvent.js");
+class OnGuildUnavailable extends OnEvent{
   constructor() {
-    this.aEventName = "guildUnavailable";
-  }
-
-  mEventName() {
-    return this.aEventName;
+    super("guildUnavailable");
   }
 
   async mExecute(pDiscordBot, ...args) {

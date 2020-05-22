@@ -15,13 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnRoleDelete {
+const OnEvent = require("../OnEvent.js");
+class OnRoleDelete extends OnEvent {
   constructor() {
-    this.aEventName = "roleDelete";
-  }
-
-  mEventName() {
-    return this.aEventName;
+    super("roleDelete");
   }
 
   async mExecute(pDiscordBot, ...args) {

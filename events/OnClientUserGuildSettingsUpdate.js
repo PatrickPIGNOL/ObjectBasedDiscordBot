@@ -15,15 +15,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnClientUserGuildSettingsUpdate {
+const OnEvent = require("../OnEvent.js");
+class OnClientUserGuildSettingsUpdate extends OnEvent{
   constructor() {
-    this.aEventName = "clientUserGuildSettingsUpdate";
+    super("clientUserGuildSettingsUpdate");
   }
-  
-  mEventName() {
-    return this.aEventName;
-  }
-  
+    
   async mExecute(pDiscordBot, ...args) {
     const clientUserGuildSettings = args[0];
     await this.mOnClientUserGuildSettingsUpdate(pDiscordBot, clientUserGuildSettings);

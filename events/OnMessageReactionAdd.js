@@ -15,13 +15,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnMessageReactionAdd {
+const OnEvent = require("../OnEvent.js");
+class OnMessageReactionAdd extends OnEvent{
   constructor() {
-    this.aEventName = "messageReactionAdd";
-  }
-
-  mEventName() {
-    return this.aEventName;
+    super("messageReactionAdd");
   }
 
   async mExecute(pDiscordBot, ...args) {

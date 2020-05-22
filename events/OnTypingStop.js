@@ -15,15 +15,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnTypingStop {
+const OnEvent = require("../OnEvent.js");
+class OnTypingStop  extends OnEvent{
   constructor() {
-    this.aEventName = "typingStop";
+    super("typingStop");
   }
-
-  mEventName() {
-    return this.aEventName;
-  }
-
+  
   async mExecute(pDiscordBot, ...args) {
     const channel = args[0];
     const user = args[1];

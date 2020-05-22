@@ -26,7 +26,7 @@ class DiscordBot {
       .filter(vFileFound => vFileFound.endsWith(".js"));
     for (const vFile of vCommandFiles) {
       const vCommand = require(`./commands/${vFile}`);
-      this.aClient.commands.set(vCommand.mName(), vCommand);
+      this.aClient.commands.set(vCommand.Name, vCommand);
     }
     this.aConfig = require("./config.json");
     this.aSQLite = require("better-sqlite3");
@@ -43,21 +43,21 @@ class DiscordBot {
       .filter(vFileFound => vFileFound.endsWith(".js"));
     for (const vFile of vEventsFiles) {
       const vEvent = require(`./events/${vFile}`);
-      this.aClient.on(vEvent.mEventName(), (...args) => {
+      this.aClient.on(vEvent.EventName, (...args) => {
         vEvent.mExecute(this, ...args);
       });
     }
   }
-  mDiscord() {
+  get Discord() {
     return this.aDiscord();
   }
-  mClient() {
+  get Client() {
     return this.aClient;
   }
-  mConfig() {
+  get Config() {
     return this.aConfig;
   }
-  mSQL() {
+  get SQL() {
     return this.aSQL;
   }
 }

@@ -70,73 +70,84 @@ class Command {
     this.aGuildOnly = pGuildOnly;
     this.aCooldown = pCooldown;
   }
-  mName() {
+  get Name() {
     return this.aName;
   }
-  mAliases() {
+  get Aliases() {
     return this.aAliases;
   }
-  mPermissions() {
+  get Permissions() {
     return this.aPermissions;
   }
-  mHavePermission(pDiscordBot, pMessage) {
+  mHavePermission(pDiscordBot, pMessage) 
+  {
     let vHavePermission = true;
-    if (this.aPermission.length > 0) {
+    console.log(this.aPermissions)
+    if (this.aPermissions && this.aPermissions.length) 
+    {
       vHavePermission = false;
       const vMemberAuthor = pMessage.member;
-      if (vMemberAuthor) {
-        this.aPermission.forEach(vPermissionFound => {
-          if (vMemberAuthor.hasPermission(vPermissionFound)) {
-            return true;
+      if (vMemberAuthor) 
+      {
+        for(const vPermissionFound of this.aPermissions) 
+        {
+          if (vMemberAuthor.hasPermission(vPermissionFound)) 
+          {
+            vHavePermission = true;            
+            return vHavePermission;
           }
-        });
-      } else {
-        console.log("Erreur pas d'auteur pour le message");
-        return false;
+        }
+      }
+      else 
+      {
+        console.log("Error : no author for this message.");
+        vHavePermission = false;
+        return vHavePermission;
       }
     }
     return vHavePermission;
   }
-  mArgs() {
+  get Args() 
+  {
     return this.aArgs;
   }
-  mMentions() {
+  get Mentions() {
     return this.aMentions;
   }
-  mUsage() {
+  get Usage() {
     return this.aUsage;
   }
-  mDescription() {
+  get Description() {
     return this.aDescription;
   }
-  mGuildOnly() {
+  get GuildOnly() {
     return this.aGuildOnly();
   }
-  mCooldown() {
+  get Cooldown() {
     return this.aCooldown();
   }
   async mExecute(pDiscordBot, message, args) {
     if (!this.mHavePermission(pDiscordBot, message)) {
-      console.log("Vous n'avez pas la permission d'executer cette commande.");        
-      message.reply("Vous n'avez pas la permission d'executer cette commande.");
+      console.log("You don't have rights to execute this command.");        
+      message.reply("You don't have rights to execute this command.");
       message.delete();
       return;
     }
     if (this.aMentions > message.mentions.members.length) {      
-      console.log(`Vous devez mentionner au moins ${this.aMentions} membre(s).`);
-      message.reply(`Vous devez mentionner au moins ${this.aMentions} membre(s).`);
+      console.log(`You must mention at least ${this.aMentions} member(s).`);
+      message.reply(`You must mention at least ${this.aMentions} member(s).`);
       message.delete();
       return;
     }
     if (this.aArgs > 0 && args.length < this.aArgs) {
-      console.log(`Vous devez fournir au moins ${this.aArgs} paramètres !`);
+      console.log(`You must provide at least ${this.aArgs} parameters !`);
       message.reply(`Vous devez fournir au moins ${this.aArgs} paramètres !`);
       message.delete();
       return;
     }
     if (this.aGuildOnly && message.channel.type !== "text") {
-      console.log("Je ne peux pas executer cette commande dans un cannal privé !");
-      message.reply("Je ne peux pas executer cette commande dans un cannal privé !");
+      console.log("I cannot execute this command in DM channel !");
+      message.reply("I cannot execute this command in DM channel !");
       message.delete();
       return;
     }

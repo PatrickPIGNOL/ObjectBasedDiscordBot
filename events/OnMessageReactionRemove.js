@@ -15,15 +15,12 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-class OnMessageReactionRemove {
+const OnEvent = require("../OnEvent.js");
+class OnMessageReactionRemove  extends OnEvent{
   constructor() {
-    this.aEventName = "messageReactionRemove";
+    super("messageReactionRemove");
   }
-
-  mEventName() {
-    return this.aEventName;
-  }
-
+  
   async mExecute(pDiscordBot, ...args) {
     const messageReaction = args[0];
     const user = args[1];
