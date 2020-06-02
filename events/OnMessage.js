@@ -39,7 +39,29 @@ class OnMessage extends OnEvent{
         ' : "' +
         message.content +
         '";\n'
-    );    
+    );        
+    
+    if (!message.content.startsWith(pDiscordBot.aConfig.Prefix)) {
+      console.log("message is not a command. Returning.");
+      return;
+    }
+    const vArgs = message.content
+      .slice(pDiscordBot.aConfig.Prefix.length)
+      .split(/ +/);
+    
+    const vCommandName = vArgs.shift().toLowerCase();
+
+    const vCommand =
+      pDiscordBot.aClient.commands.get(vCommandName) ||
+      pDiscordBot.aClient.commands.find(
+        vCommandFound =>
+          vCommandFound.Aliases &&
+          vCommandFound.Aliases.includes(vCommandName)
+      );
+
+    if (vCommand) {
+      vCommand.mExecute(pDiscordBot, message, vArgs);
+    }
   }
 }
 

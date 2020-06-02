@@ -35,7 +35,7 @@ class Ping extends Command {
     const vPong = new pDiscordBot.aDiscord.MessageEmbed()
       .setAuthor(
         pDiscordBot.aClient.user.username,
-        pDiscordBot.aClient.user.displayAvatarURL,
+        pDiscordBot.aClient.user.displayAvatarURL(),
         pDiscordBot.aConfig.URL
       )
       .setColor(pDiscordBot.aConfig.Good)
