@@ -14,7 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see **<https://www.gnu.org/licenses/>**.
 
-# Object Based Discord Bot
+# Object Based Discord Bot (v1 stable)
 
 An Object Based Discord Bot
 

@@ -24,6 +24,8 @@ class Ping extends Command {
       [],
       0,
       0,
+      0,
+      0,
       "ping",
       "Bot's activity testing command. Answer : 'Pong!'.",
       true,

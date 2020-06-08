@@ -54,7 +54,9 @@ class Command {
     pAliases,
     pPermissions,
     pArgs,
-    pMentions,
+    pUsersMentions,
+    pRolesMentions,
+    pChannelsMentions,
     pUsage,
     pDescription,
     pGuildOnly,
@@ -64,7 +66,9 @@ class Command {
     this.aAliases = pAliases;
     this.aPermissions = pPermissions;
     this.aArgs = pArgs;
-    this.aMentions = pMentions;
+    this.aUsersMentions = pUsersMentions;
+    this.aRolesMentions = pRolesMentions;
+    this.aChannelsMentions = pChannelsMentions;
     this.aUsage = pUsage;
     this.aDescription = pDescription;
     this.aGuildOnly = pGuildOnly;
@@ -130,8 +134,14 @@ class Command {
     if (!this.mHavePermission(pDiscordBot, message)) {
       throw "You don't have rights to execute this command.";
     }
-    if (this.aMentions > message.mentions.members.length) {
-      throw `You must mention at least ${this.aMentions} member(s).`;
+    if (this.aUsersMentions > message.mentions.members.length) {
+      throw `You must mention at least ${this.aUsersMentions} member(s).`;
+    }
+    if (this.aRolesMentions > message.mentions.roles.length) {
+      throw `You must mention at least ${this.aRolesMentions} role(s).`;
+    }
+    if (this.aChannelsMentions > message.mentions.channels.length) {
+      throw `You must mention at least ${this.aChannelsMentions} channel(s).`;
     }
     if (this.aArgs > 0 && args.length < this.aArgs) {
       throw `You must provide at least ${this.aArgs} parameters !`;

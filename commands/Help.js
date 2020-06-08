@@ -24,6 +24,8 @@ class Help extends Command {
       [],
       0,
       0,
+      0,
+      0,
       "help",
       "Show all bot's commands help.",
       true,
