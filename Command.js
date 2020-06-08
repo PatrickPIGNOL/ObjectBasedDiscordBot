@@ -128,28 +128,16 @@ class Command {
   }
   async mExecute(pDiscordBot, message, args) {
     if (!this.mHavePermission(pDiscordBot, message)) {
-      console.log("You don't have rights to execute this command.");        
-      message.reply("You don't have rights to execute this command.");
-      message.delete();
-      return;
+      throw "You don't have rights to execute this command.";
     }
-    if (this.aMentions > message.mentions.members.length) {      
-      console.log(`You must mention at least ${this.aMentions} member(s).`);
-      message.reply(`You must mention at least ${this.aMentions} member(s).`);
-      message.delete();
-      return;
+    if (this.aMentions > message.mentions.members.length) {
+      throw `You must mention at least ${this.aMentions} member(s).`;
     }
     if (this.aArgs > 0 && args.length < this.aArgs) {
-      console.log(`You must provide at least ${this.aArgs} parameters !`);
-      message.reply(`Vous devez fournir au moins ${this.aArgs} paramètres !`);
-      message.delete();
-      return;
+      throw `You must provide at least ${this.aArgs} parameters !`;
     }
     if (this.aGuildOnly && message.channel.type !== "text") {
-      console.log("I cannot execute this command in DM channel !");
-      message.reply("I cannot execute this command in DM channel !");
-      message.delete();
-      return;
+      throw "I cannot execute this command in DM channel !";
     }
   }
 }

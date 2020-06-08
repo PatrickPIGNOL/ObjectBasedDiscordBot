@@ -31,18 +31,27 @@ class Ping extends Command {
     );
   }
   async mExecute(pDiscordBot, message, args) {
-    super.mExecute(pDiscordBot, message, args);
-    const vPong = new pDiscordBot.aDiscord.MessageEmbed()
-      .setAuthor(
-        pDiscordBot.aClient.user.username,
-        pDiscordBot.aClient.user.displayAvatarURL(),
-        pDiscordBot.aConfig.URL
-      )
-      .setColor(pDiscordBot.aConfig.Good)
-      .setDescription(`Pong !`)
-      .setThumbnail(message.author.displayAvatarURL());
-    message.reply(vPong);
-    message.delete();
+    super
+      .mExecute(pDiscordBot, message, args)
+      .then(() => {
+        const vPong = new pDiscordBot.aDiscord.MessageEmbed()
+          .setAuthor(
+            pDiscordBot.aClient.user.username,
+            pDiscordBot.aClient.user.displayAvatarURL(),
+            pDiscordBot.aConfig.URL
+          )
+          .setColor(pDiscordBot.aConfig.Good)
+          .setDescription(`Pong !`)
+          .setThumbnail(message.author.displayAvatarURL());
+        message.reply(vPong);
+        message.delete();
+      })
+      .catch(e => {
+        console.log(e);
+        message.reply(e);
+        message.delete();
+        return;
+      });
   }
 }
 

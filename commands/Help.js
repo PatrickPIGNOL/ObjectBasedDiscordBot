@@ -31,36 +31,45 @@ class Help extends Command {
     );
   }
   mExecute(pDiscordBot, message, args) {
-    super.mExecute(pDiscordBot, message, args);
-    let vEmbed = new pDiscordBot.aDiscord.MessageEmbed()
-      .setColor(pDiscordBot.aConfig.Good)
-      .setTitle(`"**${pDiscordBot.aClient.user.username}** command panel"`)
-      .setAuthor(
-        `${pDiscordBot.aClient.user.username}`,
-        `${pDiscordBot.aClient.user.displayAvatarURL()}`,
-        pDiscordBot.aConfig.URL
-      )
-      .setDescription("Object Based Bot...\n\n__**Command's list :**__")
-      .setThumbnail(`${pDiscordBot.aClient.user.displayAvatarURL()}`);
-    for (const vCommand of pDiscordBot.mClient().commands.array())
-    {
-      if(vCommand.mHavePermission(pDiscordBot, message))
-      {
-        let vName = `**${vCommand.Name}**`
-        if(vCommand.Aliases.length)
-        {
-          vName += ` Aliases : `;
-          const vAliases = vCommand.mAliases();
-          for(const vAlias of vAliases)
-          {         
-              vName += `${vAlias} `;
+    super
+      .mExecute(pDiscordBot, message, args)
+      .then(() => {
+        let vEmbed = new pDiscordBot.aDiscord.MessageEmbed()
+          .setColor(pDiscordBot.aConfig.Good)
+          .setTitle(`"**${pDiscordBot.aClient.user.username}** command panel"`)
+          .setAuthor(
+            `${pDiscordBot.aClient.user.username}`,
+            `${pDiscordBot.aClient.user.displayAvatarURL()}`,
+            pDiscordBot.aConfig.URL
+          )
+          .setDescription("Object Based Bot...\n\n__**Command's list :**__")
+          .setThumbnail(`${pDiscordBot.aClient.user.displayAvatarURL()}`);
+        for (const vCommand of pDiscordBot.mClient().commands.array()) {
+          if (vCommand.mHavePermission(pDiscordBot, message)) {
+            let vName = `**${vCommand.Name}**`;
+            if (vCommand.Aliases.length) {
+              vName += ` Aliases : `;
+              const vAliases = vCommand.mAliases();
+              for (const vAlias of vAliases) {
+                vName += `${vAlias} `;
+              }
+            }
+            vEmbed.addField(
+              `${vName}`,
+              `Usage : ${vCommand.Usage}\n${vCommand.Description}`,
+              false
+            );
           }
         }
-        vEmbed.addField(`${vName}`, `Usage : ${vCommand.Usage}\n${vCommand.Description}`, false);
-      }
-    }
-    message.author.send(vEmbed);
-    message.delete();
+        message.author.send(vEmbed);
+        message.delete();
+      })
+      .catch(e => {
+        console.log(e);
+        message.reply(e);
+        message.delete();
+        return;
+      });
   }
 }
 
